@@ -1,0 +1,340 @@
+body {
+    width: 95%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    grid-template-rows: 15vh 5vh 80vh;
+    grid-template-areas: "h h" "n n" "m form";
+    background-color: #e6f2e6;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    grid-area: h;
+    margin-top: 0.5em;
+}
+
+header img {
+    display: block;
+    margin: auto;
+}
+
+nav {
+    grid-area: n;
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    grid-template-areas: "p1 p2";
+}
+
+nav a {
+    margin-top: 1em;
+    margin-bottom: 1em;
+    color: black;
+    text-decoration: none;
+}
+
+nav a:hover {
+    font-weight: bold;
+}
+
+nav div.categoria {
+    grid-area: p1;
+}
+
+nav a.categoria, nav a.catalogo, nav a.cadastro {
+    float:left;
+}
+
+nav a.categoria {
+    border-right: solid medium black;
+    padding-right: 2em;
+}
+
+nav a.catalogo {
+    padding-left: 2em;
+}
+
+nav div.cadastro {
+    grid-area: p2;
+}
+
+main {
+    grid-area: m;
+    display: grid;
+    grid-template-rows: 26.66vh 26.66vh 26.66vh;
+    grid-template-columns: 3.33fr 3.33fr 3.33fr;
+    grid-template-areas: "f1 f2 f3" "f4 f5 f6" "f7 f8 f9";
+}
+
+main#categorias {
+    display: none;
+    margin-right: 3em;
+    grid-area: m;
+    grid-template-rows: 26.66vh 26.66vh 26.66vh;
+    grid-template-columns: 3.33fr 3.33fr 3.33fr;
+    grid-template-areas: "cat1 cat2 cat3" "cat4 cat5 cat6" "cat7 cat8 cat9";
+}
+
+main div {
+    background-color: #f8f8f8;
+    display: grid;
+    margin-right: 3em;
+    grid-template-rows: 4vh 11vh 7.5vh;
+    grid-template-columns: 5fr 1fr 2fr 2fr;
+    grid-template-areas: "es es ed de" "no no no no" "qu da da da";
+}
+
+main#categorias div {
+    background-color: #f8f8f8;
+}
+
+main div.f1 {
+    grid-area: f1;
+    margin: 1em 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main div.f2 {
+    grid-area: f2;
+    margin: 1em 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main div.f3 {
+    grid-area: f3;
+    margin: 1em 0 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main div.f4 {
+    grid-area: f4;
+    margin: 0 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main div.f5 {
+    grid-area: f5;
+    margin: 0 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main div.f6 {
+    grid-area: f6;
+    margin: 0 0 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main div.f7 {
+    grid-area: f7;
+    margin: 0 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main div.f8 {
+    grid-area: f8;
+    margin: 0 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main div.f9 {
+    grid-area: f9;
+    margin: 0 0 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main#categorias div.cat1 {
+    margin: 1em 1em 1em 0;
+    border-radius: 0.5em;
+    grid-area: cat1;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main#categorias div.cat2 {
+    grid-area: cat2;
+    margin: 1em 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main#categorias div.cat3 {
+    grid-area: cat3;
+    margin: 1em 0 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main#categorias div.cat4 {
+    grid-area: cat4;
+    margin: 0 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main#categorias div.cat5 {
+    grid-area: cat5;
+    margin: 0 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main#categorias div.cat6 {
+    grid-area: cat6;
+    margin: 0 0 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main#categorias div.cat7 {
+    grid-area: cat7;
+    margin: 0 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main#categorias div.cat8 {
+    grid-area: cat8;
+    margin: 0 1em 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+main#categorias div.cat9 {
+    grid-area: cat9;
+    margin: 0 0 1em 0;
+    border-radius: 0.5em;
+    box-shadow: lightgray 0px 0px 20px 4px;
+}
+
+.cat1.topo, .cat2.topo, .cat3.topo, .cat4.topo, .cat5.topo, .cat6.topo, .cat7.topo, .cat8.topo, .cat9.topo {
+    border-top: solid 0.7em darkgreen;
+}
+
+.f1.topo, .f2.topo, .f3.topo, .f4.topo, .f5.topo, .f6.topo, .f7.topo, .f8.topo, .f9.topo {
+    border-top: solid 0.7em red;
+}
+
+.f1.cat3, .f2.cat3, .f3.cat3, .f4.cat3, .f5.cat3, .f6.cat3, .f7.cat3, .f8.cat3, .f9.cat3 {
+    border-top: solid 0.7em lightgreen;
+}
+
+.f1.cat4, .f2.cat4, .f3.cat4, .f4.cat4, .f5.cat4, .f6.cat4, .f7.cat4, .f8.cat4, .f9.cat4 {
+    border-top: solid 0.7em wheat;
+}
+
+.f1.cat5, .f2.cat5, .f3.cat5, .f4.cat5, .f5.cat5, .f6.cat5, .f7.cat5, .f8.cat5, .f9.cat5 {
+    border-top: solid 0.7em black;
+}
+
+.c1.cor1, .c2.cor1, .c3.cor1, .c4.cor1, .c5.cor1, .c6.cor1, .c7.cor1, .c8.cor1, .c9.cor1 {
+    border-top: solid 0.7em red;
+}
+
+main div.estado1, main div.estado2, main div.estado3 {
+    margin-right: revert;
+}
+
+main div.estado1 {
+    grid-area: es;
+    background-color: lightgreen;
+}
+
+main div.estado2 {
+    grid-area: es;
+    background-color: lightgoldenrodyellow;
+}
+
+main div.estado3 {
+    grid-area: es;
+    background-color: lightcoral;
+}
+
+main a.edit {
+    grid-area: ed;
+    background-color: green;
+}
+
+main a.delete {
+    grid-area: de;
+    background-color: red;
+}
+
+main div p {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+main div p.fruta {
+    grid-area: no;
+    font-size: 1.4em;
+    margin-top: 0.5em;
+}
+
+main div p.quant {
+    grid-area: qu;
+    margin-right: 0;
+}
+
+main div p.data {
+    grid-area: da;
+    text-align: right;
+    margin-left: 0;
+}
+
+main#categorias p.nome {
+    font-size: 1.4em;
+}
+
+main div svg {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main a.edit, main a.delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+form#cadastro {
+    grid-area: form;
+}
+
+form#atualizacao {
+    grid-area: form;
+    display: none;
+}
+
+form label {
+    display: block;
+    float: left;
+    width: 30%;
+}
+
+form input {
+    display: block;
+    width: 60%;
+}
+
+form select {
+    display: block;
+}
+
+form select, form input[type="date"], form input[type="number"] {
+    width: 20%;
+}
+
+form h2 {
+    color: darkgreen;
+}
