@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -55,7 +58,13 @@
         </div>
 
         <div class="cadastro">
-            <a class="cadastro" href="#cadastro" onclick="aparecerSumir('cadastro')">Cadastro</a>
+        <?php
+            if ( $_SESSION ) { ?> 
+
+            <a class="cadastro" href="#cadastro" onclick="aparecerSumir('cadastro')">Cadastro de produtos</a>
+
+            <a class="sessao" href="sair_sessao.php">Encerrar sessão</a>
+        <?php } ?>
         </div>
         <!-- Chamando duas funções para fazer certos elementos sairem da tela, para que nesse caso não fique algo como o formulário de edição de um produto durante a exibição das categorias. -->
     </nav>
@@ -64,12 +73,12 @@
         <?php
             include "conexao.php";
 
-            $frutas = mysqli_query($conexao, "SELECT * FROM frutas");
+            $produtos = mysqli_query($conexao, "SELECT * FROM produtos");
             $quantBloco = 0;
             $numBloco = 0;
 
-            // Estrutura de repetição que traz todas as frutas cadastradas.
-            while ( $fruta = mysqli_fetch_assoc($frutas) ) { 
+            // Estrutura de repetição que traz todos as produtos cadastradas.
+            while ( $fruta = mysqli_fetch_assoc($produtos) ) { 
                 $quantBloco++;
                 $numBloco++; if ( $quantBloco>9 ) {
                     break;
@@ -138,6 +147,9 @@
         <?php } ?>
     </main>
 
+    <?php
+        if ( $_SESSION ) {
+    ?>
     <form action="salvar.php" id="cadastro" method="post">
             <h2>Cadastre um produto</h2>
 
@@ -197,9 +209,25 @@
         </form>
 
         <?php
+            }
+
+            else { ?>
+            <form action="processa_login.php" method="post" id="login">
+                <h2>Entrada de administradores</h2>
+
+                <label for="nome_us">Nome de usuário:</label>
+                <input type="text" name="nome_us" id="nome_us">
+
+                <label for="senha_us">Senha:</label>
+                <input type="password" name="senha_us" id="nome_us">
+
+                <input type="submit" value="Entrar" name="entrar">
+            </form>
+        <?php }
+
             if ( isset($_GET['id']) ) {
                 $id = $_GET['id'];
-                $selecionada = mysqli_query($conexao, "SELECT * FROM frutas WHERE id = $id");
+                $selecionada = mysqli_query($conexao, "SELECT * FROM produtos WHERE id = $id");
                 $dadosSelecionados = mysqli_fetch_assoc($selecionada);
             }
         ?>
