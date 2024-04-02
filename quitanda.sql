@@ -16,6 +16,31 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `administradores`
+--
+
+DROP TABLE IF EXISTS `administradores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `administradores` (
+  `id_adm` int NOT NULL AUTO_INCREMENT,
+  `nome_usuario` varchar(255) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  PRIMARY KEY (`id_adm`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `administradores`
+--
+
+LOCK TABLES `administradores` WRITE;
+/*!40000 ALTER TABLE `administradores` DISABLE KEYS */;
+INSERT INTO `administradores` VALUES (1,'Márcio','Sanallite21');
+/*!40000 ALTER TABLE `administradores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `categorias`
 --
 
@@ -23,10 +48,11 @@ DROP TABLE IF EXISTS `categorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categorias` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `id_categoria` int NOT NULL AUTO_INCREMENT,
+  `nome_categoria` varchar(255) NOT NULL,
+  `data_criacao` date NOT NULL,
+  PRIMARY KEY (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,40 +61,40 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'Verdes'),(2,'Vermelhas'),(3,'Brancas'),(4,'Roxas'),(5,'Laranjas'),(6,'Amarelas');
+INSERT INTO `categorias` VALUES (1,'Frutas','2024-02-04');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `frutas`
+-- Table structure for table `produtos`
 --
 
-DROP TABLE IF EXISTS `frutas`;
+DROP TABLE IF EXISTS `produtos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `frutas` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(100) NOT NULL,
+CREATE TABLE `produtos` (
+  `id_produto` int NOT NULL AUTO_INCREMENT,
+  `nome_produto` varchar(255) NOT NULL,
+  `foto_produto` varchar(255) NOT NULL DEFAULT 'Sem Foto',
+  `estado` varchar(100) NOT NULL DEFAULT 'Bom',
   `quantidade` int NOT NULL,
-  `estado` varchar(100) NOT NULL,
-  `data` date NOT NULL,
-  `preco` int NOT NULL,
-  `cor` varchar(100) NOT NULL,
-  `categoria_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_fruta_categoria` (`categoria_id`),
-  CONSTRAINT `fk_fruta_categoria` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
+  `preco` float(4,2) NOT NULL,
+  `data_adicao` date NOT NULL,
+  `id_categoria` int NOT NULL,
+  PRIMARY KEY (`id_produto`),
+  KEY `fk_produto_categoria` (`id_categoria`),
+  CONSTRAINT `fk_produto_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `frutas`
+-- Dumping data for table `produtos`
 --
 
-LOCK TABLES `frutas` WRITE;
-/*!40000 ALTER TABLE `frutas` DISABLE KEYS */;
-INSERT INTO `frutas` VALUES (1,'Laranja',6,'Ótimo','2024-01-25',4,'...',5);
-/*!40000 ALTER TABLE `frutas` ENABLE KEYS */;
+LOCK TABLES `produtos` WRITE;
+/*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
+INSERT INTO `produtos` VALUES (1,'Laranja','Sem Foto','Ótimo',20,6.99,'2024-04-02',1);
+/*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -80,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-25 11:50:28
+-- Dump completed on 2024-04-02 11:56:25
