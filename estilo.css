@@ -81,7 +81,7 @@ main#categorias {
     grid-area: m;
     grid-template-rows: 26.66vh 26.66vh 26.66vh;
     grid-template-columns: 3.33fr 3.33fr 3.33fr;
-    grid-template-areas: "cat1 cat2 cat3" "cat4 cat5 cat6" "cat7 cat8 cat9";
+    grid-template-areas: "f1 f2 f3" "f4 f5 f6" "f7 f8 f9";
 }
 
 main.login {
@@ -92,9 +92,18 @@ main div {
     background-color: #f8f8f8;
     display: grid;
     margin-right: 3em;
+}
+
+main div.editavel {
     grid-template-rows: 4vh 11vh 7.5vh;
     grid-template-columns: 5fr 1fr 2fr 2fr;
-    grid-template-areas: "es es ed de" "no no no no" "qu da da da";
+    grid-template-areas: "es es ed de" "no no fo fo" "qu da da da";
+}
+
+main div.visualizavel {
+    grid-template-rows: 4vh 11vh 7.5vh;
+    grid-template-columns: 5fr 5fr;
+    grid-template-areas: "es es" "no fo" "qu da";
 }
 
 main#categorias div {
@@ -164,14 +173,12 @@ main div.f9 {
     box-shadow: lightgray 0px 0px 20px 4px;
 }
 
-main#categorias div.cat1 {
-    margin: 1em 1em 1em 0;
-    border-radius: 0.5em;
-    grid-area: cat1;
-    box-shadow: lightgray 0px 0px 20px 4px;
+main#categorias div.frutas {
+    background-image: url(Conteudo/salada-de-frutas.jpg);
+    background-size: cover;
 }
 
-main#categorias div.cat2 {
+/* main#categorias div.cat2 {
     grid-area: cat2;
     margin: 1em 1em 1em 0;
     border-radius: 0.5em;
@@ -225,14 +232,34 @@ main#categorias div.cat9 {
     margin: 0 0 1em 0;
     border-radius: 0.5em;
     box-shadow: lightgray 0px 0px 20px 4px;
+} */
+
+.cat1 {
+    border-top: solid 0.7em red;
 }
 
-.cat1.topo, .cat2.topo, .cat3.topo, .cat4.topo, .cat5.topo, .cat6.topo, .cat7.topo, .cat8.topo, .cat9.topo {
+.cat2 {
+    border-top: solid 0.7em lightgreen;
+}
+
+.cat3 {
     border-top: solid 0.7em darkgreen;
 }
 
-.f1.topo, .f2.topo, .f3.topo, .f4.topo, .f5.topo, .f6.topo, .f7.topo, .f8.topo, .f9.topo {
+.cat4 {
+    border-top: solid 0.7em wheat;
+}
+
+.cat5 {
+    border-top: solid 0.7em black;
+}
+
+/* .f1.cat1, .f2.cat1, .f3.cat1, .f4.cat1, .f5.cat1, .f6.cat1, .f7.cat1, .f8.cat1, .f9.cat1 {
     border-top: solid 0.7em red;
+}
+
+.f1.topo, .f2.topo, .f3.topo, .f4.topo, .f5.topo, .f6.topo, .f7.topo, .f8.topo, .f9.topo {
+    border-top: solid 0.7em darkgreen;
 }
 
 .f1.cat3, .f2.cat3, .f3.cat3, .f4.cat3, .f5.cat3, .f6.cat3, .f7.cat3, .f8.cat3, .f9.cat3 {
@@ -249,7 +276,7 @@ main#categorias div.cat9 {
 
 .c1.cor1, .c2.cor1, .c3.cor1, .c4.cor1, .c5.cor1, .c6.cor1, .c7.cor1, .c8.cor1, .c9.cor1 {
     border-top: solid 0.7em red;
-}
+} */
 
 main div.estado1, main div.estado2, main div.estado3 {
     margin-right: revert;
@@ -270,12 +297,12 @@ main div.estado3 {
     background-color: lightcoral;
 }
 
-main a.edit {
+main div.editavel a.edit {
     grid-area: ed;
     background-color: green;
 }
 
-main a.delete {
+main div.editavel a.delete {
     grid-area: de;
     background-color: red;
 }
@@ -285,7 +312,7 @@ main div p {
     margin-right: 1em;
 }
 
-main div p.fruta {
+main div p.produto {
     grid-area: no;
     font-size: 1.4em;
     margin-top: 0.5em;
@@ -303,7 +330,32 @@ main div p.data {
 }
 
 main#categorias p.nome {
-    font-size: 1.4em;
+    font-size: 2em;
+    color: white;
+    text-align: left;
+    font-weight: bold;
+    padding: 0.5em;
+    margin: 0;
+    width: 25%;
+    height: 20%;
+    background-color: rgb(49, 49, 49);
+    border-radius: 0 0 0.2em 0;
+}
+
+main div p.foto {
+    grid-area: fo;
+    margin: 0;
+}
+
+main div p.foto img {
+    width: 100%;
+    height: 100%;
+}
+
+main div p.sem_foto {
+    margin-top: 1em;
+    margin-right: 0.90em;
+    text-align: right;
 }
 
 main div svg {

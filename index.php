@@ -74,57 +74,127 @@
             include "conexao.php";
 
             $produtos = mysqli_query($conexao, "SELECT * FROM produtos");
+            $categorias = mysqli_query($conexao, "SELECT * FROM categorias");
+            $numCat = 0;
+
+            while ( $cat = mysqli_fetch_assoc($categorias) ) {
+                if ( $cat['nome_categoria'] === "Frutas" ) {
+                    $numCat = 1;
+                    $foto_categoria = "frutas";
+                }
+
+                else if ( $cat['nome_categoria'] === "Legumes" ) {
+                    $numCat = 2;
+                }
+
+                else if ( $cat['nome_categoria'] === "Verduras" ) {
+                    $numCat = 3;
+                }
+
+                else if ( $cat['nome_categoria'] === "Grãos" ) {
+                    $numCat = 4;
+                }
+
+                else {
+                    $numCat = 5;
+                }
+            }
+
             $quantBloco = 0;
             $numBloco = 0;
 
             // Estrutura de repetição que traz todos as produtos cadastradas.
-            while ( $fruta = mysqli_fetch_assoc($produtos) ) { 
+            while ( $produto = mysqli_fetch_assoc($produtos) ) { 
                 $quantBloco++;
                 $numBloco++; if ( $quantBloco>9 ) {
                     break;
                 }
 
-                if ( $fruta['estado'] == "Ótimo" ) {
+                if ( $produto['estado'] == "Ótimo" ) {
                     $estadoF = 1;
                 }
 
-                else if ( $fruta['estado'] == "Bom" ) {
+                else if ( $produto['estado'] == "Bom" ) {
                     $estadoF = 2;
                 }
 
-                else if ( $fruta['estado'] == "Ruim" ) {
+                else if ( $produto['estado'] == "Ruim" ) {
                     $estadoF = 3;
                 }
+
+                if ( $_SESSION ) {
         ?>
-            <div class="f<?= $numBloco ?> topo">
+            <div class="f<?= $numBloco ?> cat<?= $numCat ?> editavel">
                 <div class="estado<?= $estadoF ?>"></div>
-                <a class="edit" href="index.php?id=<?= $fruta['id'] ?>#atualizacao" onclick="aparecerSumir('atualizacao')">
+                <a class="edit" href="index.php?id=<?= $produto['id_produto'] ?>#atualizacao" onclick="aparecerSumir('atualizacao')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                     <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                     </svg>
                 </a>
 
-                <a class="delete" href="salvar.php?acao=delete&id=<?= $fruta['id']; ?>">
+                <a class="delete" href="salvar.php?acao=delete&id=<?= $produto['id_produto']; ?>">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
                 </a>
 
-                <p class="fruta">
-                    <?= $fruta['nome']; ?>
+                <p class="produto">
+                    <?= $produto['nome_produto']; ?>
                 </p>
 
-                <p class="quant">Quantidade
-                    <br><?= $fruta['quantidade']; ?>
+                <?php if ( $produto['foto_produto'] !== "Sem Foto" ) { ?>
+                    <p class="foto">
+                        <img src="<?= $produto['foto_produto']?>">
+                    </p>
+                <?php }
+
+                    else { ?>
+                    <p class="foto sem_foto">
+                        Sem foto do produto.
+                    </p>
+                <?php } ?>
+
+                <p class="quant">Quantidade em kg.
+                    <br><?= $produto['quantidade']; ?>
                 </p>
 
                 <p class="data">Data de aquisição
-                    <br><?= $fruta['data']; ?>
+                    <br><?= $produto['data_adicao']; ?>
                 </p>
             </div>
             
-        <?php } ?>
+        <?php } 
+            else { ?>
+                <div class="f<?= $numBloco ?> cat<?= $numCat ?> visualizavel">
+                <div class="estado<?= $estadoF ?>"></div>
+
+                <p class="produto">
+                    <?= $produto['nome_produto']; ?>
+                </p>
+
+                <?php if ( $produto['foto_produto'] !== "Sem Foto" ) { ?>
+                    <p class="foto">
+                        <img src="<?= $produto['foto_produto']?>">
+                    </p>
+                <?php }
+
+                    else { ?>
+                    <p class="foto sem_foto">
+                        Sem foto do produto.
+                    </p>
+                <?php } ?>
+
+                <p class="quant">Quantidade em kg
+                    <br><?= $produto['quantidade']; ?>
+                </p>
+
+                <p class="data">Data de aquisição
+                    <br><?= $produto['data_adicao']; ?>
+                </p>
+            </div>
+        <?php }
+        } ?>
     </main>
 
     <main id="categorias">
@@ -138,10 +208,14 @@
                 $numBlocoC++; if ( $quantBlocoC>9 ) {
                     break;
                 }
+
+                /* if ( $categoria['nome_categoria'] == "Frutas" ) {
+                    $numBlocoC = 1;
+                } */
         ?>
-        <div class="cat<?= $numBlocoC ?> topo">
+        <div class="cat<?= $numCat ?> f<?= $numBlocoC." ".$foto_categoria ?>">
             <p class="nome">
-                <?= $categoria['nome'] ?>
+                <?= $categoria['nome_categoria'] ?>
             </p>
         </div>
         <?php } ?>
@@ -159,7 +233,7 @@
             </p>
 
             <p>
-                <label for="quantidade">Quantidade:</label>
+                <label for="quantidade">Quantidade em kg:</label>
                 <input type="number" name="quantidade" id="quantidade">
             </p>
 
@@ -186,15 +260,15 @@
                         $categorias = mysqli_query($conexao, "SELECT * FROM categorias");
 
                         while ($cat = mysqli_fetch_assoc($categorias)) {
-                            echo "<option value=" . $cat["id"] . ">" . $cat["nome"] . "</option>";
+                            echo "<option value=" . $cat["id_categoria"] . ">" . $cat["nome_categoria"] . "</option>";
                         }
                     ?>
                 </select>
             </p>
 
             <p>
-                <label for="for">Cor:</label>
-                <input type="text" name="cor" id="cor">
+                <label for="foto">Foto do produto:</label>
+                <input type="file" name="foto" id="foto">
             </p>
 
             <p>
@@ -227,27 +301,27 @@
 
             if ( isset($_GET['id']) ) {
                 $id = $_GET['id'];
-                $selecionada = mysqli_query($conexao, "SELECT * FROM produtos WHERE id = $id");
+                $selecionada = mysqli_query($conexao, "SELECT * FROM produtos WHERE id_produto = $id");
                 $dadosSelecionados = mysqli_fetch_assoc($selecionada);
             }
         ?>
 
-        <form action="salvar.php?acao=atualizar&id=<?= $dadosSelecionados['id']; ?>" id="atualizacao" method="post">
+        <form action="salvar.php?acao=atualizar&id=<?= $dadosSelecionados['id_produto']; ?>" id="atualizacao" method="post">
             <h2>Edite um produto</h2>
 
             <p>
-                <label for="nome">Nome:</label>
-                <input type="text" name="nome" id="nome" value="<?= $dadosSelecionados['nome']; ?>">
+                <label for="edit_nome">Nome:</label>
+                <input type="text" name="edit_nome" id="edit_nome" value="<?= $dadosSelecionados['nome_produto']; ?>">
             </p>
 
             <p>
-                <label for="quantidade">Quantidade:</label>
-                <input type="number" name="quantidade" id="quantidade" value="<?= $dadosSelecionados['quantidade']; ?>">
+                <label for="edit_quantidade">Quantidade em kg:</label>
+                <input type="number" name="edit_quantidade" id="edit_quantidade" value="<?= $dadosSelecionados['quantidade']; ?>">
             </p>
 
             <p>
-                <label for="estado">Estado:</label>
-                <select name="estado" id="estado">
+                <label for="edit_estado">Estado:</label>
+                <select name="edit_estado" id="edit_estado">
                     <option value="<?= $dadosSelecionados['estado']; ?>">Não alterar</option>
                     <option value="Ótimo">Ótimo</option>
                     <option value="Bom">Bom</option>
@@ -256,33 +330,33 @@
             </p>
 
             <p>
-                <label for="data">Data de aquisição:</label>
-                <input type="date" name="data" id="data" value="<?= $dadosSelecionados['data']; ?>">
+                <label for="edit_data">Data de aquisição:</label>
+                <input type="date" name="edit_data" id="edit_data" value="<?= $dadosSelecionados['data_adicao']; ?>">
             </p>
 
             <p>
-                <label for="categoria">Categoria:</label>
-                <select name="categoria" id="categoria">
-                    <option value="<?= $dadosSelecionados['categoria_id']; ?>">Não alterar</option>
+                <label for="edit_categoria">Categoria:</label>
+                <select name="edit_categoria" id="edit_categoria">
+                    <option value="<?= $dadosSelecionados['id_categoria']; ?>">Não alterar</option>
                     
                     <?php
                         $categorias = mysqli_query($conexao, "SELECT * FROM categorias");
                         
                         while ($categoria = mysqli_fetch_assoc($categorias)) {
-                            echo "<option value=" . $categoria["id"] . ">" . $categoria["nome"] . "</option>";
+                            echo "<option value=" . $categoria["id_categoria"] . ">" . $categoria["nome_categoria"] . "</option>";
                         }
                     ?>
                 </select>
             </p>
 
             <p>
-                <label for="for">Cor:</label>
-                <input type="text" name="cor" id="cor" value="<?= $dadosSelecionados['cor']; ?>">
+                <label for="edit_foto">Foto do Produto:</label>
+                <input type="file" name="edit_foto" id="edit_foto">
             </p>
 
             <p>
-                <label>Preço:</label>
-                <input type="number" name="preco" step="0.01" value="<?= $dadosSelecionados['preco']; ?>">
+                <label for="edit_preco">Preço:</label>
+                <input type="number" name="edit_preco" step="0.01" value="<?= $dadosSelecionados['preco']; ?>">
                 <!-- Input number só permite números inteiros, por isso se usa o step, que irá controlar quais números são válidos -->
             </p>
 
