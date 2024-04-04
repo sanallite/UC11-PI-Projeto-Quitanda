@@ -85,10 +85,12 @@
 
                 else if ( $cat['nome_categoria'] === "Legumes" ) {
                     $numCat = 2;
+                    $foto_categoria = "legumes";
                 }
 
                 else if ( $cat['nome_categoria'] === "Verduras" ) {
                     $numCat = 3;
+                    $foto_categoria = "Verduras";
                 }
 
                 else if ( $cat['nome_categoria'] === "Grãos" ) {
@@ -224,7 +226,7 @@
     <?php
         if ( $_SESSION ) {
     ?>
-    <form action="salvar.php" id="cadastro" method="post">
+    <form action="salvar.php" id="cadastro" method="post" enctype="multipart/form-data">
             <h2>Cadastre um produto</h2>
 
             <p>
