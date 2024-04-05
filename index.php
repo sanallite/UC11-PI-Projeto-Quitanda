@@ -49,6 +49,11 @@
 <body>
     <header>
         <a href="index.php"><img src="Layout/logoquitanda-01 1.png" alt="Logotipo Quitandão"></a>
+
+        <h1>
+            Quitandão Senac<br>
+            As Melhores Frutas Da Estação!
+        </h1>
     </header>
 
     <nav>
@@ -282,6 +287,8 @@
             <p>
                 <button type="submit">Salvar</button>
             </p>
+
+            <ul id="mensagem-erro"></ul>
         </form>
 
         <?php
@@ -308,7 +315,7 @@
             }
         ?>
 
-        <form action="salvar.php?acao=atualizar&id=<?= $dadosSelecionados['id_produto']; ?>" id="atualizacao" method="post">
+        <form action="salvar.php?acao=atualizar&id=<?= $dadosSelecionados['id_produto']; ?>" id="atualizacao" method="post" enctype="multipart/form-data">
             <h2>Edite um produto</h2>
 
             <p>
@@ -366,5 +373,7 @@
                 <button type="submit">Alterar</button>
             </p>
         </form>
+
+        <script type="module" src="js/form.js"></script>
 </body>
 </html>

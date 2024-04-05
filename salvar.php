@@ -26,20 +26,76 @@
             /* $corvar = $_POST['cor']; */
             /* Substituir por foto. */
 
-            $atualizar = mysqli_query($conexao,
-            "UPDATE produtos 
-            SET nome_produto = '$nomevar', 
-            quantidade = '$quantidadevar',
-             estado = '$estadovar',
-              id_categoria = '$categoriavar',
-               data_adicao = '$datavar',
-                preco = '$precovar'
-                 WHERE id_produto = '$id'");
-
-            if ( $atualizar ) {
-                echo "<br>A linha foi alterada.";
-                /* header ('location:index.php'); */
+            if ( isset($_FILES['edit_foto']) && $_FILES['edit_foto']['error'] == 0 ) {
+                $arquivo = $_FILES['edit_foto'];
+    
+                echo "Foi detecado um upload.";
+                /* if ( $arquivo['error'] ) {
+                    die ("Ocorreu uma falha ao enviar o arquivo...");
+                } */
+    
+                if ( $arquivo['size'] > 10000000 )
+                    die ("O arquivo enviado é muito grande! Tamanho máximo: 10MB");
+    
+                $pasta = "Conteudo/Uploads/";
+                $nome_arquivo = $arquivo['name'];
+                $novo_nome_arq = uniqid();
+    
+                $extensao = strtolower( pathinfo($nome_arquivo, PATHINFO_EXTENSION));
+    
+                if ( $extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" ) {
+                    die ("Tipo de arquivo não aceito.");
+                }
+    
+                else {
+                    $mover_arquivo = move_uploaded_file(
+                        $arquivo['tmp_name'], $pasta.$novo_nome_arq.".".$extensao
+                    );
+    
+                    @$arquivo_enviado = true;
+    
+                    $link_arquivo = "Conteudo/Uploads/$novo_nome_arq.$extensao";
+                }
             }
+    
+            else {
+                echo "Não foi detectado um upload ou ocorreu um erro ao enviar o arquivo.";
+            }
+
+            if ( $arquivo_enviado ) {
+                $atualizar = mysqli_query($conexao,
+                "UPDATE produtos 
+                SET nome_produto = '$nomevar', 
+                quantidade = '$quantidadevar',
+                estado = '$estadovar',
+                id_categoria = '$categoriavar',
+                data_adicao = '$datavar',
+                    preco = '$precovar',
+                    foto_produto = '$link_arquivo'
+                    WHERE id_produto = '$id'");
+
+                if ( $atualizar ) {
+                    echo "<br>A linha foi alterada.";
+                    /* header ('location:index.php'); */
+                }
+            }
+
+            else {
+                $atualizar = mysqli_query($conexao,
+                "UPDATE produtos 
+                SET nome_produto = '$nomevar', 
+                quantidade = '$quantidadevar',
+                estado = '$estadovar',
+                id_categoria = '$categoriavar',
+                data_adicao = '$datavar',
+                    preco = '$precovar'
+                    WHERE id_produto = '$id'");
+
+                if ( $atualizar ) {
+                    echo "<br>A linha foi alterada.";
+                    header ('location:index.php');
+                }
+            }   
         }
     }
 

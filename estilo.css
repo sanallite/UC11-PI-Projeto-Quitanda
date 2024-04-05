@@ -17,11 +17,32 @@ body.login {
 header {
     grid-area: h;
     margin-top: 0.5em;
+    display: grid;
+    grid-template-columns: 4fr 6fr;
+    grid-template-areas: "lo ti";
+}
+
+header a {
+   grid-area: lo;
+   text-align: right;
 }
 
 header img {
-    display: block;
-    margin: auto;
+    padding-right: 0.5em;
+    /* display: block;
+    margin: auto; */
+}
+
+header h1 {
+    grid-area: ti;
+    display: flex;
+    align-items: center;
+    color: darkgreen;
+    text-shadow: lightgray 0 5px 5px;
+}
+
+header h1:hover {
+    text-shadow: lightgray 0 5px 5px;
 }
 
 nav {
@@ -68,6 +89,7 @@ nav div.cadastro a.cadastro {
 }
 
 main {
+    margin-right: 2em;
     grid-area: m;
     display: grid;
     grid-template-rows: 26.66vh 26.66vh 26.66vh;
@@ -102,8 +124,8 @@ main div.editavel {
 
 main div.visualizavel {
     grid-template-rows: 4vh 11vh 7.5vh;
-    grid-template-columns: 5fr 5fr;
-    grid-template-areas: "es es" "no fo" "qu da";
+    grid-template-columns: 5fr 1fr 2fr 2fr;
+    grid-template-areas: "es es es es" "no no fo fo" "qu da da da";
 }
 
 main#categorias div {
