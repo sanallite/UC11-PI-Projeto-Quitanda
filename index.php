@@ -295,7 +295,7 @@
             }
 
             else { ?>
-            <form action="processa_login.php" method="post" id="login">
+            <form action="login.php" method="post" id="login">
                 <h2>Entrada de administradores</h2>
 
                 <label for="nome_us">Nome de usuário:</label>

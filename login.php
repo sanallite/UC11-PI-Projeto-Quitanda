@@ -1,28 +1,34 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrada - Quitandão Senac</title>
-    <link rel="stylesheet" href="estilo.css">
-</head>
-<body class="login">
-    <header>
-        <a href="index.php"><img src="Layout/logoquitanda-01 1.png" alt="Logotipo Quitandão"></a>
-    </header>
+<?php
+include "conexao.php";
 
-    <main class="login">
-        <form action="processa_login.php" method="post">
-            <h2>Entrada de administradores</h2>
+if ( isset($_POST['entrar']) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
+    $nome = $_POST['nome_us'];
+    $senha = $_POST['senha_us'];
 
-            <label for="nome_us">Nome de usuário:</label>
-            <input type="text" name="nome_us" id="nome_us">
+    $query = $conexao -> query("SELECT * FROM administradores");
 
-            <label for="senha_us">Senha:</label>
-            <input type="text" name="senha_us" id="nome_us">
+    if ( !empty($nome) && !empty($senha) ) {   
+        while ( $adms = mysqli_fetch_assoc($query) ) {
+            if ( $adms['nome_usuario'] == $nome && $adms['senha'] == $senha ) {
+                session_start();
 
-            <input type="submit" value="Entrar" name="entrar">
-        </form>
-    </main>
-</body>
-</html>
+                $_SESSION['id_adm'] = $adms['id_adm'];
+                $_SESSION['nome_adm'] = $adms['nome_usuario'];
+
+                header("location:index.php");
+            }
+
+            else {
+                echo "Usuário não encontrado ou dados incorretos.";
+            }
+        }
+    }
+
+    else {
+        echo "Preencha todos os campos.";
+    }
+}
+
+else {
+    echo "Nada para exibir.";
+}

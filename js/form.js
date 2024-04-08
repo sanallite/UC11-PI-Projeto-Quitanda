@@ -49,6 +49,17 @@ function validarDados(produto, erros) {
     return erros;
 }
 
+function validarTipoArquivo(file) {
+    let tiposPermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
+
+    return tiposPermitidos.includes(file.type);
+}
+
+function validarTamanhoArquivo(file) {
+    let tamanhoMaximo = 1 * 1024 * 1024;
+    return file.size <= tamanhoMaximo;
+}
+
 function exibirErros(erros) {
     let mensagem = document.querySelector("#mensagem-erro");
     mensagem.innerHTML = "";
@@ -68,6 +79,18 @@ form_cadastro.addEventListener("submit", (event) => {
 
     validarDados(produto, erros);
 
+    let foto_produto = form_cadastro.foto.files[0];
+
+    if ( foto_produto ) {
+        if ( !validarTipoArquivo(foto_produto) ) {
+            erros.push("Tipo de arquivo não suportado!");
+        }
+
+        if ( !validarTamanhoArquivo(foto_produto) ) {
+            erros.push("O tamanho do arquivo é muito grande!");
+        }
+    }
+
     if ( erros.length > 0 ) {
 		exibirErros(erros);
 		return;
@@ -77,12 +100,19 @@ form_cadastro.addEventListener("submit", (event) => {
     fetch('salvar.php', {
         method: 'POST',
         body: formData
-    }).then( resposta => response.json() )
-    .then( data => {
-        
     })
+    .then( resposta => resposta.json() )
+    .then( data => {
+        console.log(data);
+        form_cadastro.reset();
+        let mensagens = document.querySelector("#mensagem-erro");
+        mensagens.innerHTML = "";
+    })
+    .catch( error => {
+        console.error("Erro: ", error)
+    } );
 
-    form_cadastro.reset();
+    /* form_cadastro.reset();
     let mensagens = document.querySelector("#mensagem-erro");
-    mensagens.innerHTML = "";
+    mensagens.innerHTML = ""; */
 } )
