@@ -231,7 +231,7 @@
     <?php
         if ( $_SESSION ) {
     ?>
-    <form action="salvar.php" id="cadastro" method="post" enctype="multipart/form-data">
+    <form action="salvar_produto.php" id="cadastro" method="post" enctype="multipart/form-data">
             <h2>Cadastre um produto</h2>
 
             <p>
@@ -315,8 +315,10 @@
             }
         ?>
 
-        <form action="salvar.php?acao=atualizar&id=<?= $dadosSelecionados['id_produto']; ?>" id="atualizacao" method="post" enctype="multipart/form-data">
+        <form action="editar_produto.php" id="atualizacao" method="post" enctype="multipart/form-data">
             <h2>Edite um produto</h2>
+
+            <input type="hidden" name="id_produto" value="<?= $dadosSelecionados['id_produto']; ?>">
 
             <p>
                 <label for="edit_nome">Nome:</label>

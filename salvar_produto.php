@@ -163,6 +163,7 @@
                 'sucesso' => false,
                 'mensagem' => "Não foi detectado um upload, ou ocorreu um erro ao enviar o arquivo."
             );
+            // Tenho que testar se essa mensagem realmente aparece ou se a mensagem de sucesso a subscreve.
 
             $produtos = mysqli_query($conexao,
                 "INSERT INTO produtos (nome_produto, quantidade, estado, id_categoria, data_adicao, preco)
