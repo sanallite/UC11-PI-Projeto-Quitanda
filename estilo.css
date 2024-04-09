@@ -398,12 +398,11 @@ main a.edit, main button.delete {
     width: 100%;
 }
 
-form#cadastro {
+aside#formularios {
     grid-area: form;
 }
 
-form#atualizacao {
-    grid-area: form;
+aside#formularios form#atualizacao {
     display: none;
 }
 

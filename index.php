@@ -14,12 +14,15 @@
             let formA = document.getElementById(escolhido);
             formA.style.display = "block";
 
-            let formularios = ["atualizacao", "cadastro"];
+            let formularios = ["atualizacao", "cadastro", 'login'];
+            let erros = document.getElementById("mensagem-erro");
 
             formularios.forEach ( formId => {
                 if ( formId != escolhido ) {
                     let formC = document.getElementById(formId);
                     formC.style.display = "none";
+
+                    erros.innerHTML = "";
                 }
             }
             );
@@ -232,10 +235,12 @@
         <?php } ?>
     </main>
 
-    <?php
-        if ( $_SESSION ) {
-    ?>
-    <form action="salvar_produto.php" id="cadastro" method="post" enctype="multipart/form-data">
+    <aside id="formularios">
+
+        <?php
+            if ( $_SESSION ) {
+        ?>
+        <form action="salvar_produto.php" id="cadastro" method="post" enctype="multipart/form-data">
             <h2>Cadastre um produto</h2>
 
             <p>
@@ -291,8 +296,6 @@
             <p>
                 <button type="submit">Salvar</button>
             </p>
-
-            <ul id="mensagem-erro"></ul>
         </form>
 
         <?php
@@ -380,6 +383,9 @@
             </p>
         </form>
 
-        <script type="module" src="js/form.js"></script>
+        <ul id="mensagem-erro"></ul>
+    </aside>
+
+    <script type="module" src="js/form.js"></script>
 </body>
 </html>

@@ -213,12 +213,6 @@ form_atualizacao.addEventListener("submit", (event) => {
 form_exclusao.addEventListener("submit", (event) => {
     event.preventDefault();
 
-    let erros = [];
-    if ( erros.length > 0 ) {
-        exibirErros(erros);
-        return;
-    }
-
     let formData = new FormData(form_exclusao);
     fetch('excluir_produto.php', {
         method: 'POST',
@@ -228,8 +222,6 @@ form_exclusao.addEventListener("submit", (event) => {
     .then( data => {
         console.log(data);
         form_exclusao.reset();
-        let mensagens = document.querySelector("#mensagem-erro");
-        mensagens.innerHTML = "";
     })
     .catch( error => {
         console.error("Erro: ", error)

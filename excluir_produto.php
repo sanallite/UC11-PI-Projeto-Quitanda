@@ -29,8 +29,8 @@
             echo "Nenhum dado foi enviado por post...";
         }
 
-        header('Content-Type: application-json');
-        json_encode($response);
+        header('Content-Type: application/json');
+        echo json_encode($response);
         exit;
     }
 
