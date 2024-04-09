@@ -52,7 +52,7 @@ CREATE TABLE `categorias` (
   `nome_categoria` varchar(255) NOT NULL,
   `data_criacao` date NOT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +61,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'Frutas','2024-02-04');
+INSERT INTO `categorias` VALUES (1,'Frutas','2024-02-04'),(2,'Verduras','2024-04-04'),(3,'Legumes','2024-04-09');
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,7 +84,7 @@ CREATE TABLE `produtos` (
   PRIMARY KEY (`id_produto`),
   KEY `fk_produto_categoria` (`id_categoria`),
   CONSTRAINT `fk_produto_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `produtos` (
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-INSERT INTO `produtos` VALUES (1,'Laranja','Sem Foto','Ótimo',20,6.99,'2024-04-02',1);
+INSERT INTO `produtos` VALUES (1,'Laranja Lima','Conteudo/Uploads/66154459c4df5.jpg','Ótimo',20,6.99,'2024-04-02',1),(7,'Maçã Gala','Conteudo/Uploads/660ebebd0d825.jpg','Ótimo',20,5.99,'2024-04-04',1),(8,'Pêra','Conteudo/Uploads/6613f63c47338.jpg','Ótimo',15,5.99,'2024-04-08',1),(11,'Alface Lisa','Conteudo/Uploads/66154ecaa5ef7.jpg','Ótimo',3,0.99,'2024-04-09',2);
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -106,4 +106,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-02 11:56:25
+-- Dump completed on 2024-04-09 12:04:58
