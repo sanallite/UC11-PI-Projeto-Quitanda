@@ -1,5 +1,6 @@
 let form_cadastro = document.querySelector("#cadastro");
 let form_atualizacao = document.querySelector("#atualizacao");
+let form_exclusao = document.querySelector("#exclusao");
 
 function ObterDadosCadastrar(form_cadastro) {
     let valores = {
@@ -165,6 +166,32 @@ form_atualizacao.addEventListener("submit", (event) => {
     .then( data => {
         console.log(data);
         form_atualizacao.reset();
+        let mensagens = document.querySelector("#mensagem-erro");
+        mensagens.innerHTML = "";
+    })
+    .catch( error => {
+        console.error("Erro: ", error)
+    } );
+});
+
+form_exclusao.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    let erros = [];
+    if ( erros.length > 0 ) {
+        exibirErros(erros);
+        return;
+    }
+
+    let formData = new FormData(form_exclusao);
+    fetch('excluir_produto.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then( resposta => resposta.json() )
+    .then( data => {
+        console.log(data);
+        form_exclusao.reset();
         let mensagens = document.querySelector("#mensagem-erro");
         mensagens.innerHTML = "";
     })

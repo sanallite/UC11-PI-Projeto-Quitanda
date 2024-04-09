@@ -324,7 +324,11 @@ main div.editavel a.edit {
     background-color: green;
 }
 
-main div.editavel a.delete {
+main div.editavel button.delete {
+    border-style: none;
+}
+
+main div.editavel button.delete {
     grid-area: de;
     background-color: red;
 }
@@ -387,7 +391,7 @@ main div svg {
     justify-content: center;
 }
 
-main a.edit, main a.delete {
+main a.edit, main button.delete {
     display: flex;
     align-items: center;
     justify-content: center;

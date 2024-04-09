@@ -1,6 +1,8 @@
 <?php
     include "conexao.php";
+    session_start();
 
+    if ( $conexao && $_SESSION ) {
     if ( $_SERVER['REQUEST_METHOD'] === 'POST' ) {
         $id = $_POST['id_produto'];
         $nome = $_POST['edit_nome'];
@@ -123,4 +125,9 @@
     header('Content-Type: application/json');
     echo json_encode($response);
     exit;
+    }
+    
+    else {
+        echo "Nada para exibir.";
+    }
 ?>
