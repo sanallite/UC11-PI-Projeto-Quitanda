@@ -371,7 +371,7 @@
 
             <p>
                 <label for="edit_preco">Preço:</label>
-                <input type="number" name="edit_preco" step="0.01" value="<?= $dadosSelecionados['preco']; ?>">
+                <input type="number" name="edit_preco" id="edit_preco" step="0.01" value="<?= $dadosSelecionados['preco']; ?>">
                 <!-- Input number só permite números inteiros, por isso se usa o step, que irá controlar quais números são válidos -->
             </p>
 

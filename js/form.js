@@ -29,7 +29,7 @@ function obterDadosAtualizar(form_atualizacao) {
 }
 
 function validarDados(produto, erros) {
-    if ( produto.nome === "" ) {
+    if ( produto.nome_produto === "" ) {
         erros.push("O campo nome não pode estar vazio.");
     }
 
@@ -63,6 +63,42 @@ function validarDados(produto, erros) {
 
     return erros;
 }
+
+/* function validarEdicao(produto, erros) {
+    if ( produto.nome_produto.trim() === "" ) {
+        erros.push("O campo nome não pode estar vazio.");
+    }
+
+    if ( produto.quantidade.trim() === "" ) {
+        erros.push("O campo quantidade não pode estar vazio.");
+    }
+
+    else if ( produto.quantidade <= 0 || produto.quantidade >= 100 ) {
+        erros.push("Valor Inválido de quantidade.");
+    }
+
+    if ( produto.estado.trim() === "" ) {
+        erros.push("Selecione uma opção para o estado.");
+    }
+
+    if ( produto.data.trim() === "" ) {
+        erros.push("O campo data de adição não pode estar vazio.");
+    }
+
+    if ( produto.categoria.trim() === "" ) {
+        erros.push("Selecione uma opção para a categoria.");
+    }
+
+    if ( produto.preco.trim() === "" ) {
+        erros.push("O campo preço não pode estar vazio.");
+    }
+
+    else if ( produto.preco <= 0 || produto.preco >= 100.00 ) {
+        erros.push("Valor inválido de preço.")
+    }
+
+    return erros;
+} */
 
 function validarTipoArquivo(file) {
     let tiposPermitidos = ['image/jpeg', 'image/png', 'image/jpg'];
