@@ -1,7 +1,8 @@
 let form_cadastro = document.querySelector("#cadastro");
 let form_atualizacao = document.querySelector("#atualizacao");
-let form_exclusao = document.querySelector("#exclusao");
-let form_entrada = document.querySelector("#login");
+
+console.log(form_cadastro);
+console.log(form_atualizacao);
 
 function ObterDadosCadastrar(form_cadastro) {
     let valores = {
@@ -24,15 +25,6 @@ function obterDadosAtualizar(form_atualizacao) {
         data: form_atualizacao.edit_data.value,
         categoria: form_atualizacao.edit_categoria.value,
         preco: form_atualizacao.edit_preco.value
-    }
-
-    return valores;
-}
-
-function obterDadosEntrada(form_entrada) {
-    let valores = {
-        nome_usuario: form_entrada.nome_us.value,
-        senha: form_entrada.senha_us.value
     }
 
     return valores;
@@ -69,18 +61,6 @@ function validarDados(produto, erros) {
 
     else if ( produto.preco <= 0 || produto.preco >= 100.00 ) {
         erros.push("Valor inválido de preço.")
-    }
-
-    return erros;
-}
-
-function validarDadosEntrada(dados_adm) {
-    if ( dados_adm.nome_usuario.trim() === "" ) {
-        erros.push("Digite o seu nome de usuário de administrador!");
-    }
-
-    if ( dados_adm.senha.trim() === "" ) {
-        erros.push("Digite a sua senha de administrador!")
     }
 
     return erros;
@@ -191,57 +171,3 @@ form_atualizacao.addEventListener("submit", (event) => {
         console.error("Erro: ", error)
     } );
 });
-
-form_exclusao.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    let formData = new FormData(form_exclusao);
-    fetch('excluir_produto.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then( resposta => resposta.json() )
-    .then( data => {
-        console.log(data);
-        form_exclusao.reset();
-    })
-    .catch( error => {
-        console.error("Erro: ", error)
-    } );
-});
-
-form_entrada.addEventListener("submit", (evento) => {
-    evento.preventDefault();
-
-    let dados_adm = obterDadosEntrada(form_entrada);
-    let erros = [];
-
-    validarDadosEntrada(dados_adm);
-
-    if ( erros.length > 0 ) {
-        exibirErros(erros);
-        return;
-    }
-
-    let formData = new FormData(form_entrada);
-    fetch('login.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then( resposta => resposta.json() )
-    .then( data => {
-        console.log(data);
-        
-        form_entrada.reset();
-
-        if ( data.sucesso === true ) {
-            alert("Sessão iniciada com sucesso!");
-        }
-
-        let mensagens = document.querySelector("#mensagem-erro");
-        mensagens.innerHTML = "";
-    })
-    .catch( error => {
-        console.error("Erro: ", error)
-    } );
-})

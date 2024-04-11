@@ -9,33 +9,17 @@
             $apagar_produto = mysqli_query($conexao, "DELETE FROM produtos WHERE id_produto = $id");
 
             if ( $apagar_produto ) {
-                $response = array(
-                    'sucesso' => true,
-                    'mensagem' => "Produto removido com sucesso!"
-                );
-
-                json_encode($response);
                 header("location:index.php");
             }
 
             else {
-                $response = array(
-                    'sucesso' => false,
-                    'mensagem' => "Erro ao remover o produto..."
-                );
-
-                json_encode($response);
-                exit;
+                echo "Erro na exclusão do produto...";
             }
         }
 
         else {
             echo "Nenhum dado foi enviado por post...";
         }
-
-        header('Content-Type: application/json');
-        echo json_encode($response);
-        exit;
     }
 
     else {

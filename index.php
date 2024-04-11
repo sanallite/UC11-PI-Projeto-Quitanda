@@ -146,7 +146,7 @@
                 <form action="excluir_produto.php" method="post" id="exclusao">
                     <input type="hidden" name="id_produto" value="<?= $produto['id_produto'] ?>">
 
-                    <button type="submit" class="delete">
+                    <button type="submit" class="delete" id="botao_deletar">
                         <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                         </svg>
@@ -294,7 +294,7 @@
             </p>
 
             <p>
-                <button type="submit">Salvar</button>
+                <button type="submit" id="botao_cadastrar">Salvar</button>
             </p>
         </form>
 
@@ -309,38 +309,38 @@
                 <input type="text" name="nome_us" id="nome_us">
 
                 <label for="senha_us">Senha:</label>
-                <input type="password" name="senha_us" id="nome_us">
+                <input type="password" name="senha_us" id="senha_us">
 
-                <input type="submit" value="Entrar" name="entrar">
+                <input type="submit" value="Entrar" name="entrar" id="botao_entrar">
             </form>
         <?php }
 
             if ( isset($_GET['id']) ) {
                 $id = $_GET['id'];
                 $selecionada = mysqli_query($conexao, "SELECT * FROM produtos WHERE id_produto = $id");
-                $dadosSelecionados = mysqli_fetch_assoc($selecionada);
+                @$dadosSelecionados = mysqli_fetch_assoc($selecionada);
             }
         ?>
 
         <form action="editar_produto.php" id="atualizacao" method="post" enctype="multipart/form-data">
             <h2>Edite um produto</h2>
 
-            <input type="hidden" name="id_produto" value="<?= $dadosSelecionados['id_produto']; ?>">
+            <input type="hidden" name="id_produto" value="<?= @$dadosSelecionados['id_produto']; ?>">
 
             <p>
                 <label for="edit_nome">Nome:</label>
-                <input type="text" name="edit_nome" id="edit_nome" value="<?= $dadosSelecionados['nome_produto']; ?>">
+                <input type="text" name="edit_nome" id="edit_nome" value="<?= @$dadosSelecionados['nome_produto']; ?>">
             </p>
 
             <p>
                 <label for="edit_quantidade">Quantidade em kg:</label>
-                <input type="number" name="edit_quantidade" id="edit_quantidade" value="<?= $dadosSelecionados['quantidade']; ?>">
+                <input type="number" name="edit_quantidade" id="edit_quantidade" value="<?= @$dadosSelecionados['quantidade']; ?>">
             </p>
 
             <p>
                 <label for="edit_estado">Estado:</label>
                 <select name="edit_estado" id="edit_estado">
-                    <option value="<?= $dadosSelecionados['estado']; ?>">Não alterar</option>
+                    <option value="<?= @$dadosSelecionados['estado']; ?>">Não alterar</option>
                     <option value="Ótimo">Ótimo</option>
                     <option value="Bom">Bom</option>
                     <option value="Ruim">Ruim</option>
@@ -349,13 +349,13 @@
 
             <p>
                 <label for="edit_data">Data de aquisição:</label>
-                <input type="date" name="edit_data" id="edit_data" value="<?= $dadosSelecionados['data_adicao']; ?>">
+                <input type="date" name="edit_data" id="edit_data" value="<?= @$dadosSelecionados['data_adicao']; ?>">
             </p>
 
             <p>
                 <label for="edit_categoria">Categoria:</label>
                 <select name="edit_categoria" id="edit_categoria">
-                    <option value="<?= $dadosSelecionados['id_categoria']; ?>">Não alterar</option>
+                    <option value="<?= @$dadosSelecionados['id_categoria']; ?>">Não alterar</option>
                     
                     <?php
                         $categorias = mysqli_query($conexao, "SELECT * FROM categorias");
@@ -374,12 +374,12 @@
 
             <p>
                 <label for="edit_preco">Preço:</label>
-                <input type="number" name="edit_preco" id="edit_preco" step="0.01" value="<?= $dadosSelecionados['preco']; ?>">
+                <input type="number" name="edit_preco" id="edit_preco" step="0.01" value="<?= @$dadosSelecionados['preco']; ?>">
                 <!-- Input number só permite números inteiros, por isso se usa o step, que irá controlar quais números são válidos -->
             </p>
 
             <p>
-                <button type="submit">Alterar</button>
+                <button type="submit" id="botao_atualizar">Alterar</button>
             </p>
         </form>
 
