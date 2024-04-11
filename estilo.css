@@ -256,23 +256,23 @@ main#categorias div.cat9 {
     box-shadow: lightgray 0px 0px 20px 4px;
 } */
 
-.cat1 {
+.cor-frutas {
     border-top: solid 0.7em red;
 }
 
-.cat2 {
+.cor-legumes {
     border-top: solid 0.7em lightgreen;
 }
 
-.cat3 {
+.cor-verduras {
     border-top: solid 0.7em darkgreen;
 }
 
-.cat4 {
+.cor-graos {
     border-top: solid 0.7em wheat;
 }
 
-.cat5 {
+.cor-padrao {
     border-top: solid 0.7em black;
 }
 

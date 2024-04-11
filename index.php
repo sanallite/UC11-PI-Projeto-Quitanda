@@ -83,10 +83,33 @@
 
             $produtos = mysqli_query($conexao, "SELECT * FROM produtos");
             $categorias = mysqli_query($conexao, "SELECT * FROM categorias");
-            $numCat = 0;
+            /* $numCat = 0; */
 
             while ( $cat = mysqli_fetch_assoc($categorias) ) {
-                if ( $cat['nome_categoria'] === "Frutas" ) {
+                switch ( $cat['nome_categoria'] ) {
+                    case "Frutas":
+                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-frutas";
+                    break;
+
+                    case "Verduras":
+                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-verduras";
+                    break;
+
+                    case "Legumes":
+                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-legumes";
+                    break;
+
+                    case "Grãos":
+                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-graos";
+                    break;
+
+                    default:
+                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-padrao";
+                    break;
+                }
+
+
+                /* if ( $cat['nome_categoria'] === "Frutas" ) {
                     $numCat = 1;
                     $foto_categoria = "frutas";
                 }
@@ -107,7 +130,8 @@
 
                 else {
                     $numCat = 5;
-                }
+                } */
+
             }
 
             $quantBloco = 0;
@@ -119,6 +143,9 @@
                 $numBloco++; if ( $quantBloco>9 ) {
                     break;
                 }
+                
+                $categoria_produto = $cat['nome_categoria'];
+                $corCategoria = isset( $coresCategorias[$categoria_produto] ) ? $coresCategorias[$categoria_produto] : "cor-padrao";
 
                 if ( $produto['estado'] == "Ótimo" ) {
                     $estadoF = 1;
@@ -134,7 +161,7 @@
 
                 if ( $_SESSION ) {
         ?>
-            <div class="f<?= $numBloco ?> cat<?= $numCat ?> editavel">
+            <div class="f<?= $numBloco. " ".$corCategoria ?> editavel">
                 <div class="estado<?= $estadoF ?>"></div>
                 <a class="edit" href="index.php?id=<?= $produto['id_produto'] ?>#atualizacao" onclick="aparecerSumir('atualizacao')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
@@ -222,10 +249,6 @@
                 $numBlocoC++; if ( $quantBlocoC>9 ) {
                     break;
                 }
-
-                /* if ( $categoria['nome_categoria'] == "Frutas" ) {
-                    $numBlocoC = 1;
-                } */
         ?>
         <div class="cat<?= $numCat ?> f<?= $numBlocoC." ".$foto_categoria ?>">
             <p class="nome">
