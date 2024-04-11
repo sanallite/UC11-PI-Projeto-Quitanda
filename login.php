@@ -15,11 +15,19 @@ if ( isset($_POST['entrar']) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
                 $_SESSION['id_adm'] = $adms['id_adm'];
                 $_SESSION['nome_adm'] = $adms['nome_usuario'];
 
-                header("location:index.php");
+                /* header("location:index.php"); */
+                $response = array(
+                    'sucesso' => true,
+                    'mensagem' => 'Sessão iniciada com sucesso!'
+                );
             }
 
             else {
                 echo "Usuário não encontrado ou dados incorretos.";
+                $response = array(
+                    'sucesso' => false,
+                    'mensagem' => 'Erro ao iniciar a sessão!'
+                );
             }
         }
     }
@@ -27,6 +35,10 @@ if ( isset($_POST['entrar']) && $_SERVER['REQUEST_METHOD'] === 'POST' ) {
     else {
         echo "Preencha todos os campos.";
     }
+
+    header('Content-Type: application/json');
+    echo json_encode($response);
+    exit;
 }
 
 else {

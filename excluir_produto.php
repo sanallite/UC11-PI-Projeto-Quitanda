@@ -13,6 +13,9 @@
                     'sucesso' => true,
                     'mensagem' => "Produto removido com sucesso!"
                 );
+
+                json_encode($response);
+                header("location:index.php");
             }
 
             else {
@@ -20,6 +23,7 @@
                     'sucesso' => false,
                     'mensagem' => "Erro ao remover o produto..."
                 );
+
                 json_encode($response);
                 exit;
             }
