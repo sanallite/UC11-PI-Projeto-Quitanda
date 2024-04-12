@@ -134,42 +134,42 @@ main#categorias div {
 
 main div.f1 {
     grid-area: f1;
-    margin: 1em 1em 1em 0;
+    margin: 1em 1em 0.5em 0;
     border-radius: 0.5em;
     box-shadow: lightgray 0px 0px 20px 4px;
 }
 
 main div.f2 {
     grid-area: f2;
-    margin: 1em 1em 1em 0;
+    margin: 1em 1em 0.5em 0;
     border-radius: 0.5em;
     box-shadow: lightgray 0px 0px 20px 4px;
 }
 
 main div.f3 {
     grid-area: f3;
-    margin: 1em 0 1em 0;
+    margin: 1em 0 0.5em 0;
     border-radius: 0.5em;
     box-shadow: lightgray 0px 0px 20px 4px;
 }
 
 main div.f4 {
     grid-area: f4;
-    margin: 0 1em 1em 0;
+    margin: 0.5em 1em 1em 0;
     border-radius: 0.5em;
     box-shadow: lightgray 0px 0px 20px 4px;
 }
 
 main div.f5 {
     grid-area: f5;
-    margin: 0 1em 1em 0;
+    margin: 0.5em 1em 1em 0;
     border-radius: 0.5em;
     box-shadow: lightgray 0px 0px 20px 4px;
 }
 
 main div.f6 {
     grid-area: f6;
-    margin: 0 0 1em 0;
+    margin: 0.5em 0 1em 0;
     border-radius: 0.5em;
     box-shadow: lightgray 0px 0px 20px 4px;
 }
@@ -200,61 +200,20 @@ main#categorias div.frutas {
     background-size: cover;
 }
 
-/* main#categorias div.cat2 {
-    grid-area: cat2;
-    margin: 1em 1em 1em 0;
-    border-radius: 0.5em;
-    box-shadow: lightgray 0px 0px 20px 4px;
+main#categorias div.verduras {
+    background-image: url(Conteudo/verduras.jpg);
+    background-size: cover;
 }
 
-main#categorias div.cat3 {
-    grid-area: cat3;
-    margin: 1em 0 1em 0;
-    border-radius: 0.5em;
-    box-shadow: lightgray 0px 0px 20px 4px;
+main#categorias div.legumes {
+    background-image: url(Conteudo/legumes.jpeg);
+    background-size: cover;
 }
 
-main#categorias div.cat4 {
-    grid-area: cat4;
-    margin: 0 1em 1em 0;
-    border-radius: 0.5em;
-    box-shadow: lightgray 0px 0px 20px 4px;
+main#categorias div.graos {
+    background-image: url(Conteudo/);
+    background-size: cover;
 }
-
-main#categorias div.cat5 {
-    grid-area: cat5;
-    margin: 0 1em 1em 0;
-    border-radius: 0.5em;
-    box-shadow: lightgray 0px 0px 20px 4px;
-}
-
-main#categorias div.cat6 {
-    grid-area: cat6;
-    margin: 0 0 1em 0;
-    border-radius: 0.5em;
-    box-shadow: lightgray 0px 0px 20px 4px;
-}
-
-main#categorias div.cat7 {
-    grid-area: cat7;
-    margin: 0 1em 1em 0;
-    border-radius: 0.5em;
-    box-shadow: lightgray 0px 0px 20px 4px;
-}
-
-main#categorias div.cat8 {
-    grid-area: cat8;
-    margin: 0 1em 1em 0;
-    border-radius: 0.5em;
-    box-shadow: lightgray 0px 0px 20px 4px;
-}
-
-main#categorias div.cat9 {
-    grid-area: cat9;
-    margin: 0 0 1em 0;
-    border-radius: 0.5em;
-    box-shadow: lightgray 0px 0px 20px 4px;
-} */
 
 .cor-frutas {
     border-top: solid 0.7em red;
@@ -276,45 +235,21 @@ main#categorias div.cat9 {
     border-top: solid 0.7em black;
 }
 
-/* .f1.cat1, .f2.cat1, .f3.cat1, .f4.cat1, .f5.cat1, .f6.cat1, .f7.cat1, .f8.cat1, .f9.cat1 {
-    border-top: solid 0.7em red;
-}
-
-.f1.topo, .f2.topo, .f3.topo, .f4.topo, .f5.topo, .f6.topo, .f7.topo, .f8.topo, .f9.topo {
-    border-top: solid 0.7em darkgreen;
-}
-
-.f1.cat3, .f2.cat3, .f3.cat3, .f4.cat3, .f5.cat3, .f6.cat3, .f7.cat3, .f8.cat3, .f9.cat3 {
-    border-top: solid 0.7em lightgreen;
-}
-
-.f1.cat4, .f2.cat4, .f3.cat4, .f4.cat4, .f5.cat4, .f6.cat4, .f7.cat4, .f8.cat4, .f9.cat4 {
-    border-top: solid 0.7em wheat;
-}
-
-.f1.cat5, .f2.cat5, .f3.cat5, .f4.cat5, .f5.cat5, .f6.cat5, .f7.cat5, .f8.cat5, .f9.cat5 {
-    border-top: solid 0.7em black;
-}
-
-.c1.cor1, .c2.cor1, .c3.cor1, .c4.cor1, .c5.cor1, .c6.cor1, .c7.cor1, .c8.cor1, .c9.cor1 {
-    border-top: solid 0.7em red;
-} */
-
-main div.estado1, main div.estado2, main div.estado3 {
+main div.estado-otimo, main div.estado-bom, main div.estado-ruim {
     margin-right: revert;
 }
 
-main div.estado1 {
+main div.estado-otimo {
     grid-area: es;
     background-color: lightgreen;
 }
 
-main div.estado2 {
+main div.estado-bom {
     grid-area: es;
     background-color: lightgoldenrodyellow;
 }
 
-main div.estado3 {
+main div.estado-ruim {
     grid-area: es;
     background-color: lightcoral;
 }
@@ -364,8 +299,16 @@ main#categorias p.nome {
     margin: 0;
     width: 25%;
     height: 20%;
-    background-color: rgb(49, 49, 49);
-    border-radius: 0 0 0.2em 0;
+    background-color: rgb(54, 36, 15);
+    border-radius: 0 0 0.4em 0;
+}
+
+main#categorias div.verduras p.nome {
+    width: 35%;
+}
+
+main#categorias div.legumes p.nome {
+    width: 34%;
 }
 
 main div p.foto {
@@ -396,6 +339,7 @@ main a.edit, main button.delete {
     align-items: center;
     justify-content: center;
     width: 100%;
+    height: 100%;
 }
 
 aside#formularios {

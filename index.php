@@ -81,58 +81,8 @@
         <?php
             include "conexao.php";
 
-            $produtos = mysqli_query($conexao, "SELECT * FROM produtos");
-            $categorias = mysqli_query($conexao, "SELECT * FROM categorias");
-            /* $numCat = 0; */
-
-            while ( $cat = mysqli_fetch_assoc($categorias) ) {
-                switch ( $cat['nome_categoria'] ) {
-                    case "Frutas":
-                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-frutas";
-                    break;
-
-                    case "Verduras":
-                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-verduras";
-                    break;
-
-                    case "Legumes":
-                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-legumes";
-                    break;
-
-                    case "Grãos":
-                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-graos";
-                    break;
-
-                    default:
-                        $coresCategorias[ $cat['nome_categoria'] ] = "cor-padrao";
-                    break;
-                }
-
-
-                /* if ( $cat['nome_categoria'] === "Frutas" ) {
-                    $numCat = 1;
-                    $foto_categoria = "frutas";
-                }
-
-                else if ( $cat['nome_categoria'] === "Legumes" ) {
-                    $numCat = 2;
-                    $foto_categoria = "legumes";
-                }
-
-                else if ( $cat['nome_categoria'] === "Verduras" ) {
-                    $numCat = 3;
-                    $foto_categoria = "Verduras";
-                }
-
-                else if ( $cat['nome_categoria'] === "Grãos" ) {
-                    $numCat = 4;
-                }
-
-                else {
-                    $numCat = 5;
-                } */
-
-            }
+            $produtos = mysqli_query($conexao, "SELECT * FROM produtos INNER JOIN categorias WHERE produtos.id_categoria = categorias.id_categoria");
+            /* $categorias = mysqli_query($conexao, "SELECT * FROM categorias"); */
 
             $quantBloco = 0;
             $numBloco = 0;
@@ -144,25 +94,42 @@
                     break;
                 }
                 
-                $categoria_produto = $cat['nome_categoria'];
-                $corCategoria = isset( $coresCategorias[$categoria_produto] ) ? $coresCategorias[$categoria_produto] : "cor-padrao";
+                if ( $produto['nome_categoria'] === "Frutas" ) {
+                    $corCat = "cor-frutas";
+                }
+
+                else if ( $produto['nome_categoria'] === "Verduras" ) {
+                    $corCat = "cor-verduras";
+                }
+
+                else if ( $produto['nome_categoria'] === "Legumes" ) {
+                    $corCat = "cor-legumes";
+                }
+
+                else if ( $produto['nome_categoria'] === "Grãos" ) {
+                    $corCat = "cor-graos";
+                }
+
+                else {
+                    $corCat = "cor-padrao";
+                }
 
                 if ( $produto['estado'] == "Ótimo" ) {
-                    $estadoF = 1;
+                    $estadoP = "estado-otimo";
                 }
 
                 else if ( $produto['estado'] == "Bom" ) {
-                    $estadoF = 2;
+                    $estadoP = "estado-bom";
                 }
 
                 else if ( $produto['estado'] == "Ruim" ) {
-                    $estadoF = 3;
+                    $estadoP = "estado-ruim";
                 }
 
                 if ( $_SESSION ) {
         ?>
-            <div class="f<?= $numBloco. " ".$corCategoria ?> editavel">
-                <div class="estado<?= $estadoF ?>"></div>
+            <div class="f<?= $numBloco." ".$corCat ?> editavel">
+                <div class="<?= $estadoP ?>"></div>
                 <a class="edit" href="index.php?id=<?= $produto['id_produto'] ?>#atualizacao" onclick="aparecerSumir('atualizacao')">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
@@ -207,8 +174,8 @@
             
         <?php } 
             else { ?>
-                <div class="f<?= $numBloco ?> cat<?= $numCat ?> visualizavel">
-                <div class="estado<?= $estadoF ?>"></div>
+                <div class="f<?= $numBloco." ".$corCat ?> visualizavel">
+                <div class="<?= $estadoP ?>"></div>
 
                 <p class="produto">
                     <?= $produto['nome_produto']; ?>
@@ -249,8 +216,32 @@
                 $numBlocoC++; if ( $quantBlocoC>9 ) {
                     break;
                 }
+                
+                if ( $categoria['nome_categoria'] === "Frutas" ) {
+                    $corCat = "cor-frutas";
+                    $foto_categoria = "frutas";
+                }
+
+                else if ( $categoria['nome_categoria'] === "Verduras" ) {
+                    $corCat = "cor-verduras";
+                    $foto_categoria = "verduras";
+                }
+
+                else if ( $categoria['nome_categoria'] === "Legumes" ) {
+                    $corCat = "cor-legumes";
+                    $foto_categoria = "legumes";
+                }
+
+                else if ( $categoria['nome_categoria'] === "Grãos" ) {
+                    $corCat = "cor-graos";
+                    $foto_categoria = "graos";
+                }
+
+                else {
+                    $corCat = "cor-padrao";
+                }
         ?>
-        <div class="cat<?= $numCat ?> f<?= $numBlocoC." ".$foto_categoria ?>">
+        <div class="<?= $corCat ?> f<?= $numBlocoC." ".$foto_categoria ?>">
             <p class="nome">
                 <?= $categoria['nome_categoria'] ?>
             </p>
