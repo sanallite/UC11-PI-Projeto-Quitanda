@@ -63,6 +63,14 @@
         <div class="categoria catalogo">
             <a class="categoria" href="#" onclick="aparecerMain('categorias'), aparecerSumir('cadastroCat')">Categorias</a>
             <a class="catalogo" href="#" onclick="aparecerMain('catalogo'), aparecerSumir('cadastro')">Catálogo</a>
+
+            <a href="?nr_pag=1">Primeira Página</a>
+            <a href="">Anterior</a>
+            <a href="">Próxima</a>
+            <a href="?nr_pag=<?= $paginas ?>">Última Página</a>
+            <p>
+                <?php echo $inicio; ?>
+            </p>
         </div>
 
         <div class="cadastro">
@@ -81,8 +89,23 @@
         <?php
             include "conexao.php";
 
-            $produtos = mysqli_query($conexao, "SELECT * FROM produtos INNER JOIN categorias WHERE produtos.id_categoria = categorias.id_categoria");
+            $inicio = 0;
+            $produtosPorPagina = 9;
+
+            $produtos = mysqli_query($conexao, "SELECT * FROM produtos INNER JOIN categorias WHERE produtos.id_categoria = categorias.id_categoria LIMIT $inicio, $produtosPorPagina");
             /* $categorias = mysqli_query($conexao, "SELECT * FROM categorias"); */
+
+            $todosProdutos = mysqli_query($conexao, "SELECT * FROM produtos INNER JOIN categorias WHERE produtos.id_categoria = categorias.id_categoria");
+
+            $numeroProdutos = $todosProdutos->num_rows;
+            $paginas = ceil($numeroProdutos / $produtosPorPagina);
+
+            if ( isset($_GET['nr_pag']) ) {
+                $pagina_atual = $_GET['nr_pag'] - 1;
+
+                $inicio = $pagina_atual * $produtosPorPagina;
+            }
+
 
             $quantBloco = 0;
             $numBloco = 0;
