@@ -15,6 +15,10 @@
 
         $inicio = $pagina_atual * $produtosPorPagina;
     }
+
+    else {
+        $pagina_atual = 0;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -23,46 +27,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quitandão Senac</title>
     <link rel="stylesheet" href="estilo.css">
-    
-    <script>
-        function aparecerSumir(escolhido) {
-            let formA = document.getElementById(escolhido);
-            formA.style.display = "block";
-
-            let formularios = ["atualizacao", "cadastro", 'login'];
-            let erros = document.getElementById("mensagem-erro");
-
-            formularios.forEach ( formId => {
-                if ( formId != escolhido ) {
-                    let formC = document.getElementById(formId);
-                    formC.style.display = "none";
-
-                    erros.innerHTML = "";
-                }
-            }
-            );
-        }
-        // Essa função tem um parâmetro que receberá um valor na hora que a função for chamada, nesse caso o parâmetro "escolhido" receberá uma string com o id do formulário que eu quero fazer aparecer.
-
-        // Depois foi criado um array com o id de todos os formulários na página, e esse array será percorrido pelo loop forEach, que iterará a variável "formId" cada item do array, nesse caso os ids dos formulários, e se o valor desse item for diferente do valor que foi carregado na variável "escolhido" o sistema criará uma variável que pegará no documento o elemento com o id que está carregado na variável "formId" e fará esse elemento desaparecer.
-
-        // Assim cada vez que um formulário for escolhido, através das chamadas da função, ele exibirá o escolhido e ocultará o resto.
-
-        function aparecerMain(escolhido) {
-            let main1 = document.getElementById(escolhido);
-            main1.style.display = "grid";
-
-            let mainDivs = ["catalogo", "categorias"];
-
-            mainDivs.forEach ( mainId => {
-                if ( mainId != escolhido ) {
-                    let main2 = document.getElementById(mainId);
-                    main2.style.display = "none";
-                }
-            }
-            );
-        }
-    </script>
 </head>
 <body>
     <header>
@@ -81,7 +45,9 @@
         </div>
 
         <div class="paginas">
+            <a class="paginas">Página Atual: <?= $pagina_atual + 1?></a>
             <a href="?nr_pag=1" class="paginas">Primeira Página</a>
+
         <?php
             if ( isset($_GET['nr_pag']) && $_GET['nr_pag'] > 1) { ?>
                 <a href="?nr_pag=<?= $_GET['nr_pag'] - 1 ?>" class="paginas">Anterior</a>
@@ -91,15 +57,12 @@
                 <a href="?nr_pag=<?= $_GET['nr_pag'] + 1 ?>" class="paginas">Próxima</a>
         <?php } 
             
-            else if ( !isset($_GET['nr_pag']) ) { 
-                $pagina_atual = 0 ?>
+            else if ( !isset($_GET['nr_pag']) ) { ?>
                 <a href="?nr_pag=2" class="paginas">Próxima</a>
         <?php } 
         ?>
             
             <a href="?nr_pag=<?= $paginas ?>" class="paginas">Última Página</a>
-        
-            <a class="paginas">Página Atual: <?= $pagina_atual + 1?></a>
         </div>
 
         <div class="cadastro">
@@ -277,9 +240,9 @@
                 }
         ?>
         <div class="<?= $corCat ?> f<?= $numBlocoC." ".$foto_categoria ?>">
-            <p class="nome">
+            <a class="nome" href="segunda_pag.php?id_cat=<?= $categoria['id_categoria'] ?>">
                 <?= $categoria['nome_categoria'] ?>
-            </p>
+            </a>
         </div>
         <?php } ?>
     </main>
@@ -435,6 +398,7 @@
         <ul id="mensagem-erro"></ul>
     </aside>
 
+    <script src="js/divs.js"></script>
     <script type="module" src="js/form.js"></script>
 </body>
 </html>

@@ -300,7 +300,7 @@ main div p.data {
     margin-left: 0;
 }
 
-main#categorias p.nome {
+main#categorias a.nome {
     font-size: 2em;
     color: white;
     text-align: left;
@@ -311,13 +311,14 @@ main#categorias p.nome {
     height: 20%;
     background-color: rgb(54, 36, 15);
     border-radius: 0 0 0.4em 0;
+    text-decoration: none;
 }
 
-main#categorias div.verduras p.nome {
+main#categorias div.verduras a.nome {
     width: 35%;
 }
 
-main#categorias div.legumes p.nome {
+main#categorias div.legumes a.nome {
     width: 34%;
 }
 

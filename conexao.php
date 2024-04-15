@@ -1,5 +1,5 @@
 <?php
-$conexao = mysqli_connect("localhost:3306","marcio","Eternal","quitanda",);
+$conexao = mysqli_connect("localhost:3307","root","Eternal","quitanda",);
 
 if($conexao) {
 }
