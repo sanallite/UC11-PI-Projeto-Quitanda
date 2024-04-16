@@ -57,7 +57,7 @@
                 <a href="?nr_pag=<?= $_GET['nr_pag'] + 1 ?>" class="paginas">Próxima</a>
         <?php } 
             
-            else if ( !isset($_GET['nr_pag']) ) { ?>
+            else if ( !isset($_GET['nr_pag']) && $numeroProdutos > 9 ) { ?>
                 <a href="?nr_pag=2" class="paginas">Próxima</a>
         <?php } 
         ?>
