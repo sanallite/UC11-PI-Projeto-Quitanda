@@ -25,7 +25,7 @@
     }
 
     else {
-        header("location:index.php");
+        
     }
 ?>
 
@@ -55,22 +55,21 @@
 
         <div class="paginas" >
             <a class="paginas">Página Atual: <?= $pagina_atual + 1?></a>
-
-            <a href="segunda_pag.php?nr_pag=1" class="paginas">Primeira Página</a>
+            <a href="<?php echo $_SERVER['PHP_SELF']; ?>?nr_pag=1&id_cat=<?= $id_cat ?>" class="paginas">Primeira Página</a>
         <?php
             if ( isset($_GET['nr_pag']) && $_GET['nr_pag'] > 1) { ?>
-                <a href="segunda_pag.php?nr_pag=<?= $_GET['nr_pag'] - 1 ?>" class="paginas">Anterior</a>
+                <a href="<?php echo $_SERVER['PHP_SELF']; ?>?id_cat=<?= $id_cat ?>&nr_pag=<?= $_GET['nr_pag'] - 1 ?>" class="paginas">Página Anterior</a>
         <?php }
 
             if ( isset($_GET['nr_pag']) && $_GET['nr_pag'] < $paginas ) { ?>
-                <a href="segunda_pag.php?nr_pag=<?= $_GET['nr_pag'] + 1 ?>" class="paginas">Próxima</a>
+                <a href="<?php echo $_SERVER['PHP_SELF']; ?>?id_cat=<?= $id_cat ?>&nr_pag=<?= $_GET['nr_pag'] + 1 ?>" class="paginas">Próxima Página</a>
         <?php } 
             
-            else if ( !isset($_GET['nr_pag']) && $numeroProdutos > 9) { ?>
-                <a href="segunda_pag.php?nr_pag=2" class="paginas">Próxima</a>
+            else if ( !isset($_GET['nr_pag']) && $numeroProdutos > 1) { ?>
+                <a href="<?php echo $_SERVER['PHP_SELF']; ?>?id_cat=<?= $id_cat ?>&nr_pag=2" class="paginas">Próxima Página</a>
         <?php } ?>
-            
-            <a href="segunda_pag.php?nr_pag=<?= $paginas ?>" class="paginas">Última Página</a>
+
+            <a href="<?php echo $_SERVER['PHP_SELF']; ?>?id_cat=<?= $id_cat ?>&nr_pag=<?= $paginas ?>" class="paginas">Última Página</a>
         </div>
 
         <div class="cadastro">
@@ -86,7 +85,7 @@
 
     <main id="catalogo">
     <?php
-        $produtos = mysqli_query($conexao, "SELECT * FROM produtos INNER JOIN categorias WHERE produtos.id_categoria = categorias.id_categoria AND produtos.id_categoria = $id_cat");
+        $produtos = mysqli_query($conexao, "SELECT * FROM produtos INNER JOIN categorias WHERE produtos.id_categoria = categorias.id_categoria AND produtos.id_categoria = $id_cat LIMIT $inicio, $produtosPorPagina");
 
         $quantBloco = 0;
         $numBloco = 0;

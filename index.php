@@ -47,21 +47,19 @@
         <div class="paginas">
             <a class="paginas">Página Atual: <?= $pagina_atual + 1?></a>
             <a href="?nr_pag=1" class="paginas">Primeira Página</a>
-
         <?php
             if ( isset($_GET['nr_pag']) && $_GET['nr_pag'] > 1) { ?>
-                <a href="?nr_pag=<?= $_GET['nr_pag'] - 1 ?>" class="paginas">Anterior</a>
+            
+                <a href="?nr_pag=<?= $_GET['nr_pag'] - 1 ?>" class="paginas">Página Anterior</a>
         <?php }
 
             if ( isset($_GET['nr_pag']) && $_GET['nr_pag'] < $paginas ) { ?>
-                <a href="?nr_pag=<?= $_GET['nr_pag'] + 1 ?>" class="paginas">Próxima</a>
+                <a href="?nr_pag=<?= $_GET['nr_pag'] + 1 ?>" class="paginas">Próxima Página</a> 
         <?php } 
             
             else if ( !isset($_GET['nr_pag']) && $numeroProdutos > 9 ) { ?>
-                <a href="?nr_pag=2" class="paginas">Próxima</a>
-        <?php } 
-        ?>
-            
+                <a href="?nr_pag=2" class="paginas">Próxima Página</a>
+        <?php } ?>
             <a href="?nr_pag=<?= $paginas ?>" class="paginas">Última Página</a>
         </div>
 
