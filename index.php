@@ -159,11 +159,15 @@
                     </p>
                 <?php } ?>
 
-                <p class="quant">Quantidade em kg.
-                    <br><?= $produto['quantidade']; ?>
+                <p class="quant">Quantidade disponível em kg:
+                    <?= $produto['quantidade']; ?>
                 </p>
 
-                <p class="data">Data de aquisição
+                <p class="preco">Preço:
+                    <br>R$ <?= $produto['preco']; ?>
+                </p>
+
+                <p class="data">Data de aquisição:
                     <br><?= $produto['data_adicao']; ?>
                 </p>
             </div>
@@ -189,11 +193,15 @@
                     </p>
                 <?php } ?>
 
-                <p class="quant">Quantidade em kg
-                    <br><?= $produto['quantidade']; ?>
+                <p class="quant">Quantidade disponível em kg:
+                    <?= $produto['quantidade']; ?>
                 </p>
 
-                <p class="data">Data de aquisição
+                <p class="preco">Preço:
+                    <br>R$ <?= $produto['preco']; ?>
+                </p>
+
+                <p class="data">Data de aquisição:
                     <br><?= $produto['data_adicao']; ?>
                 </p>
             </div>

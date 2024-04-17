@@ -134,8 +134,8 @@ main div.editavel {
 
 main div.visualizavel {
     grid-template-rows: 4vh 11vh 7.5vh;
-    grid-template-columns: 5fr 1fr 2fr 2fr;
-    grid-template-areas: "es es es es" "no no fo fo" "qu da da da";
+    grid-template-columns: 1fr 1fr 1fr 0.5fr 0.5fr 1fr 1fr;
+    grid-template-areas: "es es es es es es es" "no no no no fo fo fo" "qu qu da da da pr pr";
 }
 
 main#categorias div {
@@ -296,6 +296,11 @@ main div p.quant {
 
 main div p.data {
     grid-area: da;
+    text-align: center;
+}
+
+main div p.preco {
+    grid-area: pr;
     text-align: right;
     margin-left: 0;
 }
