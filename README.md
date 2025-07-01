@@ -9,6 +9,7 @@ Este foi o segundo projeto integrador do meu curso técnico no Senac, finalizand
 Administrar o estoque de uma quitanda fictícia, onde o responsável pela quitanda adicionará os produtos que estão disponíveis, através de uma interface bonita e intuitiva, que será a mesma exibida para os seus clientes.
 
 ## Página Inicial
+![](Layout/quitandaFinal.png)
 
 ## Funcionalidades
 * Filtro de resultados por categorias.
